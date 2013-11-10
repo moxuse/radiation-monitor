@@ -14,6 +14,7 @@ var app = express();
 //Middleware: Allows cross-domain requests (CORS)
 var allowCrossDomain = function(req, res, next) {
   var allowedHost = {
+    'http://radiation-monitor.herokuapp.com': true,
     'http://dokusyodebokin.rulez.jp': true,
     'http://localhost:3000': true
   };
