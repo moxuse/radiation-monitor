@@ -1,0 +1,19 @@
+.container{
+  max-width: 980px;
+}
+
+.axis path, .axis line{
+  fill: none;
+  stroke: black;
+}
+.axis text {
+  font-size: 11px;
+}
+
+.pref-label {
+  fill: #fff;
+  fill-opacity: .5;
+  color: #666;
+  font-size: 8px;
+  text-anchor: middle;
+}
