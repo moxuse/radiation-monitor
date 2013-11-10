@@ -119,12 +119,12 @@ var Observatories = Backbone.Collection.extend({
 //   xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://dokusyodebokin.rulez.jp');
 // }
 
-var obsserver = new Observatories();
+// var obsserver = new Observatories();
 
-obsserver.fetch({
-  dataType : 'json',
-  //beforeSend: setHeader,
-  success: function(){
-    console.log(this.toJSON());
-  }
-})
+// obsserver.fetch({
+//   dataType : 'json',
+//   //beforeSend: setHeader,
+//   success: function(){
+//     console.log(this.toJSON());
+//   }
+// })
