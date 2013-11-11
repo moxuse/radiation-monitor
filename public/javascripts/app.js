@@ -1,4 +1,4 @@
-(function(){
+
   $('body').ready(function(){
 
     var obsservers = new Observatories();
@@ -96,4 +96,3 @@
     //     });
     //   })
   });
-})()

@@ -98,8 +98,8 @@ var MapView = Backbone.View.extend({
             .transition()
             .duration(1000)
             .attr({
-              y: function(d) {return -1 * d.get('doserate')},
-              height: function(d) {return d.get('doserate')},
+              y: function(d) {return -1 * d.get('doserate') * 0.1},
+              height: function(d) {return d.get('doserate') * 0.1},
             });
         });
     }
