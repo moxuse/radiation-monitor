@@ -2,10 +2,16 @@
 MapView
 */
 var MapView = Backbone.View.extend({
-  model: Observatories,
-  projection: undefined,
-  mapSvg: undefined,
-  tagName: 'svg',
+  defaults: {
+    model: Observatories,
+    projection: undefined,
+    mapSvg: undefined,
+    tagName: 'svg',
+    loadedGeoJSONO: undefined,
+  },
+  initialize: function() {
+    this.loadedGeoJSONO = new $.Deferred();
+  },
   renderJp:function() {
 
     var self = this;
@@ -66,7 +72,9 @@ var MapView = Backbone.View.extend({
             d3.select(this).attr("name")
           );
         })
+        self.loadedGeoJSONO.resolve();
     });
+    return this.loadedGeoJSONO.promise();
   },
   render: function() {
     var self = this;
@@ -103,6 +111,5 @@ var MapView = Backbone.View.extend({
             });
         });
     }
-    return this;
   }
 })
