@@ -1,26 +1,29 @@
 
   $('body').ready(function(){
-    var obsservers = new Observatories();
-    var mapView  = new MapView({
-      collection: obsservers
-    });
-    
-    $.when(
-      mapView.renderJp()
-    ).done(function() {
-      obsservers.fetch({
-        dataType : 'jsonp',
-        success: function(req){
-          console.log("fetch succees!! : ", obsservers.length);
-          renderGraph();
-          console.log(mapView);
-        }
-      })
-    });
 
-    var renderGraph = function() {
-      mapView.render();
-    }
+    $('#mapview').ready(function() {
+      var obsservers = new Observatories();
+      var mapView  = new MapView({
+        collection: obsservers
+      });
+      
+      $.when(
+        mapView.renderJp()
+      ).done(function() {
+        obsservers.fetch({
+          dataType : 'jsonp',
+          success: function(req){
+            console.log("fetch succees!! : ", obsservers.length);
+            renderGraph();
+            console.log(mapView);
+          }
+        })
+      });
+
+      var renderGraph = function() {
+        mapView.render();
+      }
+    });
     //});
 
     // var dataset = [42,23,35,56,23,96,23,36];
