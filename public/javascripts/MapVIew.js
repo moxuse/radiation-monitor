@@ -1,7 +1,6 @@
 /*
 MapView
 */
-
 var MapView = Backbone.View.extend({
   model: Observatories,
   projection: undefined,
@@ -14,9 +13,9 @@ var MapView = Backbone.View.extend({
     var padding = 20;
     
     xy = d3.geo
-      .mercator()     //投影法の指定
-      .scale(2500)   //スケール（ズーム）の指定
-      .center([137.0032936, 43.3219088]); //中心の座標を指定
+      .mercator()
+      .scale(2500)
+      .center([137.0032936, 43.3219088]);
        
     path = d3.geo.path().projection(xy);
 
