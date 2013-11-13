@@ -1,5 +1,5 @@
 /*
-MapView
+View MapView
 */
 var MapView = Backbone.View.extend({
   defaults: {
@@ -25,7 +25,7 @@ var MapView = Backbone.View.extend({
        
     path = d3.geo.path().projection(xy);
 
-    map = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '1200px');
+    map = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '1000px');
     
     this.mapSvg = map;
     
@@ -61,7 +61,7 @@ var MapView = Backbone.View.extend({
       map.selectAll(".prefecture")
         .on("mouseover", function(d) {
             d3.select(this)
-            .attr("fill", "red")
+            .attr("fill", "#cccccc")
         })
         .on("mouseout", function(d) {
           d3.select(this)
@@ -88,15 +88,16 @@ var MapView = Backbone.View.extend({
         .ease('bounce')
         .each("start",function() {
           d3.select(this).attr({
+            x: function(d, i) {return (self.projection(d.get('coordinates')))[0]},
             width: 3,
             fill: "white",
           })
         })
-        .delay(function(d, i){ return i * 5})
+        .delay(function(d, i){ return i * 2})
         .attr({
           y: 0,
           x: 0,
-          width: 2,
+          width: 3,
           fill: "red",
           height: 3,
         })
@@ -106,8 +107,8 @@ var MapView = Backbone.View.extend({
             .transition()
             .duration(1000)
             .attr({
-              y: function(d) {return -1 * d.get('doserate') * 0.1},
-              height: function(d) {return d.get('doserate') * 0.1},
+              y: function(d) {return -1 * d.get('doserate') * 0.05},
+              height: function(d) {return d.get('doserate') * 0.05},
             });
         });
     }

@@ -1,6 +1,5 @@
 
   $('body').ready(function(){
-
     $('#mapview').ready(function() {
       var obsservers = new Observatories();
       var mapView  = new MapView({
