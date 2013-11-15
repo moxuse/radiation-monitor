@@ -11,20 +11,18 @@ var MapView = Backbone.View.extend({
   },
   initialize: function() {
     this.loadedGeoJSONO = new $.Deferred();
+    this.projection = d3.geo
+      .mercator()
+      .scale(2500)
+      .center([137.0032936, 43.3219088]);
+    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '1000px');
   },
   renderJp:function() {
     var self = this;
     var path, xy;
     var padding = 20;
-    
-    this.projection = d3.geo
-      .mercator()
-      .scale(2500)
-      .center([137.0032936, 43.3219088]);
        
     path = d3.geo.path().projection(this.projection);
-
-    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '1000px');
 
     var grad = d3.scale.linear().domain([0, 5]).range(["#000000", "#222222"]);
 
