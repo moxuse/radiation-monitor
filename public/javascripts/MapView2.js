@@ -13,29 +13,24 @@ var MapView = Backbone.View.extend({
     this.loadedGeoJSONO = new $.Deferred();
   },
   renderJp:function() {
-
     var self = this;
-    var path, map, xy;
+    var path, xy;
     var padding = 20;
     
-    xy = d3.geo
+    this.projection = d3.geo
       .mercator()
       .scale(2500)
       .center([137.0032936, 43.3219088]);
        
-    path = d3.geo.path().projection(xy);
+    path = d3.geo.path().projection(this.projection);
 
-    map = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '1000px');
-    
-    this.mapSvg = map;
-    
-    this.projection = xy;
+    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '1000px');
 
     var grad = d3.scale.linear().domain([0, 5]).range(["#000000", "#222222"]);
 
     d3.json("geojson/japanGeo.json", function(error, jp) {
 
-      map.append("svg:g")
+      self.mapSvg.append("svg:g")
         .attr("class", "tracts")
         .selectAll("path")
         .data(jp.features)
@@ -48,7 +43,7 @@ var MapView = Backbone.View.extend({
         .attr("name", function(d) {return d.properties.name})
         .append("svg:text")
 
-      map.selectAll(".pref-label")
+      self.mapSvg.selectAll(".pref-label")
         .data(jp.features)
         .enter()
         .append("text")            
@@ -58,10 +53,16 @@ var MapView = Backbone.View.extend({
         .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
 
 
-      map.selectAll(".prefecture")
+      self.mapSvg.selectAll(".prefecture")
         .on("mouseover", function(d) {
             d3.select(this)
-            .attr("fill", "#cccccc")
+            .attr("fill", function(d) {
+              if ("Fukushima" == d.properties.name) {
+                return 'red';
+              } else {
+                return '#ccc';
+              }
+            })
         })
         .on("mouseout", function(d) {
           d3.select(this)
