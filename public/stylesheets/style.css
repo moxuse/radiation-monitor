@@ -17,3 +17,23 @@
   font-size: 8px;
   text-anchor: middle;
 }
+
+#discription {
+  height: 0px;
+  overflow: hidden;
+  margin: 0px;
+  -webkit-transition-duration: 1s; 
+  -webkit-transition-timing-function: out;  
+}
+
+#console {
+  position: absolute;
+}
+
+.btn-group {
+  margin-bottom: 20px;
+}
+
+.table {
+  font-size: 0.8em;
+}

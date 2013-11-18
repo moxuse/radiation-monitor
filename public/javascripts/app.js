@@ -1,20 +1,23 @@
-
+(function() {
   $('body').ready(function(){
     $('#mapview').ready(function() {
-      var obsservers = new Observatories();
+      var timeView = new TimeView();
+      timeView.render();
+      var detailView = new DetailView();
+      detailView.render();
+      var observatories = new Observatories();
       var mapView  = new MapView({
-        collection: obsservers
+        collection: observatories
       });
       
       $.when(
         mapView.renderJp()
       ).done(function() {
-        obsservers.fetch({
+        observatories.fetch({
           dataType : 'jsonp',
           success: function(req){
-            console.log("fetch succees!! : ", obsservers.length);
+            console.log("fetch succees!! : ", observatories.length);
             renderGraph();
-            console.log(mapView);
           }
         })
       });
@@ -22,6 +25,9 @@
       var renderGraph = function() {
         mapView.render();
       }
+
+      setButtonAction();
+
     });
     //});
 
@@ -104,3 +110,35 @@
     //     });
     //   })
   });
+
+  var showFukushima = function() {
+
+  }
+
+  var showJapanAll = function() {
+    
+  }
+
+  var setButtonAction = function() {
+    $('#show-discription').hover(
+      function(e) {
+        var target = $(e.target);
+        target.css({color: '#08c'});
+      },
+      function(e) {
+        var target = $(e.target);
+        target.css({color: '#000000'});
+      }
+    );
+
+    $('#show-discription').on('click', function() {
+      if (50 > $('#discription').height()) {
+        $('#discription').css({height: '50px'})
+        $('#show-discription .arrow').css('-webkit-transform', 'rotate(+90deg)');;
+      } else {
+        $('#discription').css({height: '0px'});
+        $('#show-discription .arrow').css('-webkit-transform', 'rotate(0deg)');;
+      }
+    })
+  };
+})();

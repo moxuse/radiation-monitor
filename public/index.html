@@ -13,6 +13,8 @@
     <script src="javascripts/vendor/topojson.v1.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/vendor/moment-with-langs.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/Observatory.js" type="text/javascript" charset="utf-8"></script>
+    <script id="mapview" src="javascripts/TimeView.js" type="text/javascript" charset="utf-8"></script>
+    <script id="mapview" src="javascripts/DetailView.js" type="text/javascript" charset="utf-8"></script>
     <script id="mapview" src="javascripts/MapView2.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/app.js" type="text/javascript" charset="utf-8"></script>
     <title>Japan Radiation Monitor</title>
@@ -23,14 +25,61 @@
       <div class="container">
         <div class="page-header">
           <h1>Japan Radiation Monitor</h1>
-          <p class="read">
-          test
+          <p id="show-discription" class="read" style="height:22px; display: table;">
+            <svg class="arrow" width="22px" height="22px" style="display: table-cell;">
+              <polygon points="6, 6 6, 16 16, 11" viewBox="0 0 16 16" fill="black" />
+            </svg>
+            <span style=" display: table-cell; vertical-align: middle">
+              このサイトは何ですか
+            </span>
           </p>
-
+          <p id="discription">
+            全国の放射線量を可視化します。<a href="http://dokusyodebokin.rulez.jp/earthquake/readme" target="_blank">こちら</a>のAPIを使用させていただきました。<br>
+            データソース：<a href="http://www.bousai.ne.jp/tex/index.php" target="_blank">文部科学省原子力安全課原子力環境防災ネットワーク</a>
+          </p>
+        </div>
+        <div id="console">
+          <div class="time"></div>
+          <div class="btn-group">
+            <button id="all-japan-btn" type="button" class="btn btn-default">日本全域</button>
+            <button id="fukushima-btn" type="button" class="btn btn-default" style="color: #ccc;">福島県</button>
+            <!-- <button type="button" class="btn btn-default">Right</button> -->
+          </div>          
+          <div class="detail">
+            <table class="table table-striped" id="detail-data">
+              <tbody>
+                <tr>
+                  <td>doserate:</td><td class="doserate"></td> <td>(nGy/h)</td>
+                </tr>
+                <tr>
+                  <td>prefecture:</td><td class="prefecture"></td><td>県</td>
+                </tr>
+                <tr>
+                  <td>place:</td><td class="place"></td><td>観測場所</td>
+                </tr>
+                <tr>
+                  <td>direction:</td><td class="direction"></td><td>風向き</td>
+                </tr>
+                <tr>
+                  <td>wind: </td><td class="wind"></td> <td>風速[m/s]</td>
+                </tr>
+                <tr>
+                  <td>rain: </td><td class="rain"></td> <td>降水量[mm]</td>
+                </tr>
+                <tr>
+                  <td>datatime: </td><td class="datatime"></td> <td>データの取得時間</td>
+                </tr>
+                <tr>
+                  <td>createtime: </td><td class="createtime"></td> <td>データの生成時間</td>
+                </tr>
+                <tr>
+                  <td>datasource: </td><td class="datasource"></td> <td>観測局名</td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
         </div>
         <div id="japan"></div>
-        <div id="rect"></div>
-        
       </div>
     </div>
     

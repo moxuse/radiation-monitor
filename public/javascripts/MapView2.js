@@ -7,17 +7,17 @@ var MapView = Backbone.View.extend({
     projection: undefined,
     mapSvg: undefined,
     tagName: 'svg',
-    loadedGeoJSONO: undefined,
+    loadedGeoJSON: undefined,
   },
   initialize: function() {
-    this.loadedGeoJSONO = new $.Deferred();
+    this.loadedGeoJSON = new $.Deferred();
     this.projection = d3.geo
       .mercator()
-      .scale(2500)
-      .center([137.0032936, 43.3219088]);
-    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '1000px');
+      .scale(2200)
+      .center([138.0032936, 41.0219088]);
+    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '980px');
   },
-  renderJp:function() {
+  renderJp: function() {
     var self = this;
     var path, xy;
     var padding = 20;
@@ -58,7 +58,7 @@ var MapView = Backbone.View.extend({
               if ("Fukushima" == d.properties.name) {
                 return 'red';
               } else {
-                return '#ccc';
+                return '#888';
               }
             })
         })
@@ -67,13 +67,13 @@ var MapView = Backbone.View.extend({
           .attr("fill", function(d) {return grad( Math.floor(Math.random() * 5) )})
         })
         .on("click", function() {
-          alert(
+          console.log(
             d3.select(this).attr("name")
           );
         })
-        self.loadedGeoJSONO.resolve();
+        self.loadedGeoJSON.resolve();
     });
-    return this.loadedGeoJSONO.promise();
+    return this.loadedGeoJSON.promise();
   },
   render: function() {
     var self = this;
@@ -101,6 +101,7 @@ var MapView = Backbone.View.extend({
           height: 3,
         })
         .attr("transform", function(d, i) {return "translate(" + self.projection(d.get('coordinates')) + ")"; })
+        .attr("class", "data-rect")
         .each("end",function() {
           d3.select(this)
             .transition()
@@ -109,6 +110,21 @@ var MapView = Backbone.View.extend({
               y: function(d) {return -1 * d.get('doserate') * 0.05},
               height: function(d) {return d.get('doserate') * 0.05},
             });
+        });
+
+      this.mapSvg.selectAll("rect")
+        .on("mouseover", function(d) {
+          var _attributes = d.attributes;
+          $("#detail-data .doserate").text(_attributes.doserate);
+          $("#detail-data .prefecture").text(_attributes.prefecture);
+          $("#detail-data .place").text(_attributes.place);
+          $("#detail-data .direction").text(_attributes.direction);
+          $("#detail-data .wind").text(_attributes.wind);
+          $("#detail-data .rain").text(_attributes.rain);
+          $("#detail-data .rain").text(_attributes.rain);
+          $("#detail-data .datatime").text(_attributes.datatime);
+          $("#detail-data .createtime").text(_attributes.createtime);
+          $("#detail-data .datasource").text(_attributes.datasource);
         });
     }
   }
