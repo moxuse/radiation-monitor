@@ -14,8 +14,8 @@ var MapView = Backbone.View.extend({
     this.projection = d3.geo
       .mercator()
       .scale(2200)
-      .center([138.0032936, 41.0219088]);
-    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '860px').attr("height", '980px');
+      .center([137.4032936, 41.0219088]);
+    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '890px').attr("height", '980px');
   },
   renderJp: function() {
     var self = this;
@@ -26,7 +26,7 @@ var MapView = Backbone.View.extend({
 
     var grad = d3.scale.linear().domain([0, 5]).range(["#000000", "#222222"]);
 
-    d3.json("geojson/japanGeo.json", function(error, jp) {
+    d3.json("geojson/japanGeo_t.json", function(error, jp) {
 
       self.mapSvg.append("svg:g")
         .attr("class", "tracts")
