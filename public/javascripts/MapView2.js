@@ -38,7 +38,7 @@ var MapView = Backbone.View.extend({
         .attr("id", function(d, i) { return "pref-" + i; })
         .attr("fill", function(d, i) {return grad( Math.floor(Math.random() * 5) )})
         .attr({d: path, opacity: 0.8})  //位置情報をPathのd属性に変換して適応
-        .attr("name", function(d) {console.log(d.properties.PREF);return d.properties.PREF.en})
+        .attr("name", function(d) {return d.properties.PREF.en})
         .append("svg:text")
 
       self.mapSvg.selectAll(".pref-label")
