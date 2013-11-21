@@ -1,4 +1,5 @@
 (function() {
+  var mapView;
   $('body').ready(function(){
     $('#mapview').ready(function() {
       var timeView = new TimeView();
@@ -6,10 +7,9 @@
       var detailView = new DetailView();
       detailView.render();
       var observatories = new Observatories();
-      var mapView  = new MapView({
+        mapView = new MapView({
         collection: observatories
       });
-      
       $.when(
         mapView.renderJp()
       ).done(function() {
@@ -139,6 +139,18 @@
         $('#discription').css({height: '0px'});
         $('#show-discription .arrow').css('-webkit-transform', 'rotate(0deg)');;
       }
+    })
+
+    $('#change-data-doserate').on('click', function (e) {
+      mapView.transformDataTo('doserate');
+    });
+    
+    $('#change-data-wind').on('click', function (e) {
+      mapView.transformDataTo('wind');
+    });
+
+    $('#change-data-rain').on('click', function (e) {
+      mapView.transformDataTo('rain');
     })
   };
 })();

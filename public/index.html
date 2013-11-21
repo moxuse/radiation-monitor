@@ -7,6 +7,7 @@
     <link href="stylesheets/sticky-footer.css" rel="stylesheet">
     <link href="stylesheets/style.css" rel="stylesheet">
     <script src="javascripts/vendor/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/vendor/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/vendor/underscore-min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/vendor/backbone-min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/vendor/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
@@ -44,7 +45,15 @@
             <button id="all-japan-btn" type="button" class="btn btn-default">日本全域</button>
             <button id="fukushima-btn" type="button" class="btn btn-default" style="color: #ccc;">福島県</button>
             <!-- <button type="button" class="btn btn-default">Right</button> -->
-          </div>          
+          </div> 
+          <div class="dropdown">
+            <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#">Data Type</a>
+            <ul class="dropdown-menu">
+              <li><a id="change-data-doserate" tabindex="-1" href="#">Doserate</a></li>
+              <li><a id="change-data-wind" tabindex="-1" href="#">Wind</a></li>
+              <li><a id="change-data-rain" tabindex="-1" href="#">Rain</a></li>
+            </ul>
+          </div>    
           <div class="detail">
             <table class="table table-striped" id="detail-data">
               <tbody>

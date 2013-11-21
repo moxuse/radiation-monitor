@@ -127,5 +127,55 @@ var MapView = Backbone.View.extend({
           $("#detail-data .datasource").text(_attributes.datasource);
         });
     }
+  },
+  transformDataTo: function(type) {
+    var self = this;
+    var dataType = type;
+    var rectColor = '#ccc';
+    var scale = 0.05;
+    switch (dataType) {
+      case 'doserate':
+        rectColor = 'red';
+        scale = 0.05;
+        break;
+      case 'wind':
+        rectColor = '#00ffff';
+        scale = 5;
+        break;
+      case 'rain':
+        rectColor = '#0022ff';
+        scale = 2;
+        break;
+      default:
+        break;
+    }
+    this.mapSvg.selectAll("rect")
+      .transition()
+      .duration(1000)
+      .attr({
+        y: function(d) {
+          var val = d.get(dataType);
+          if (self.isNumber(val)) {
+            return -1 * val * scale
+          } else {
+            return 0.0;
+          }
+        },
+        height: function(d) {
+          var val = d.get(dataType);
+          if (self.isNumber(val)) {
+            return val * scale
+          } else {
+            return 0.0;
+          }
+        },
+        fill: rectColor
+      })
+  },
+  isNumber: function(x) { 
+    if( typeof(x) != 'number' && typeof(x) != 'string' )
+        return false;
+    else 
+        return (x == parseFloat(x) && isFinite(x));
   }
 })
