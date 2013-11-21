@@ -1,5 +1,5 @@
 .container{
-  max-width: 980px;
+  max-width: 1000px;
 }
 
 .axis path, .axis line{
@@ -40,4 +40,8 @@
 
 .table {
   font-size: 0.8em;
+}
+
+#japan {
+  margin-top: 110px;
 }

@@ -14,8 +14,8 @@ var MapView = Backbone.View.extend({
     this.projection = d3.geo
       .mercator()
       .scale(2200)
-      .center([137.4032936, 41.0219088]);
-    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '890px').attr("height", '980px');
+      .center([135.4032936, 41.0219088]);
+    this.mapSvg = d3.select("#japan").append("svg:svg").attr("width", '1000px').attr("height", '980px');
   },
   renderJp: function() {
     var self = this;
