@@ -1,3 +1,6 @@
+/*
+app.js
+*/
 (function() {
   var mapView;
   $('body').ready(function(){

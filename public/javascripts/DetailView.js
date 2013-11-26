@@ -1,4 +1,7 @@
-DetailView = function() {
+/*
+DetailView
+*/
+var DetailView = function() {
   /*
   consotructor
   */

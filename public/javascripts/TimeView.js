@@ -1,4 +1,7 @@
-TimeView = function() {
+/*
+View TimeView
+*/
+var TimeView = function() {
   /*
   consotructor
   */

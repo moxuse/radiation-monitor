@@ -1,7 +1,6 @@
 /*
 Model Observatory
 */
-
 var Observatory = Backbone.Model.extend({
   defaults: {
     id: 0, 
