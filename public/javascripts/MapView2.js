@@ -3,7 +3,6 @@ View MapView
 */
 var MapView = Backbone.View.extend({
   defaults: {
-    model: Observatories,
     projection: undefined,
     mapSvg: undefined,
     tagName: 'svg',
