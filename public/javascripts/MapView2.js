@@ -172,9 +172,10 @@ var MapView = Backbone.View.extend({
       })
   },
   isNumber: function(x) { 
-    if( typeof(x) != 'number' && typeof(x) != 'string' )
+    if (typeof(x) != 'number' && typeof(x) != 'string') {
         return false;
-    else 
+    } else {
         return (x == parseFloat(x) && isFinite(x));
+    }
   }
 })
