@@ -20,15 +20,49 @@ gulp.task('slim', function(){
   .pipe(gulp.dest("./public"));
 });
 
+gulp.task('javascripts', function(){
+  gulp.src("./src/javascripts/**")
+  .pipe(gulp.dest("./public/javascripts/"));
+});
+
+gulp.task('stylesheets', function(){
+  gulp.src("./src/stylesheets/**")
+  .pipe(gulp.dest("./public/stylesheets/"));
+});
+
+gulp.task('images', function(){
+  gulp.src("./src/images/**")
+  .pipe(gulp.dest("./public/images/"));
+});
+
+gulp.task('geojson', function(){
+  gulp.src("./src/geojson/**")
+  .pipe(gulp.dest("./public/geojson/"));
+});
+
+
 /*
 gulp tasks
 */
 gulp.task('build', function() {
-  gulp.run(['compass', 'slim']);
+  gulp.run([
+    'compass',
+    'slim',
+    'javascripts',
+    'stylesheets',
+    'images',
+    'geojson'
+  ]);
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['src/*.slim'], ['build'])
+  gulp.watch([
+    'src/*.slim',
+    './src/javascripts/**',
+    './src/stylesheets/**',
+    './src/images/**'
+    ],
+    ['build'])
 });
 
 gulp.task('default', function() {
