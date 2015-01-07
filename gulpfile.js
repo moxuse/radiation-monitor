@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var _compass = require('gulp-compass');
 var _slim = require("gulp-slim");
 var _watch = require('gulp-watch');
+var _rimraf = require('rimraf');
 
 gulp.task('compass', function() {
   gulp.src('src/sass/*.scss').pipe(_compass({
@@ -40,6 +41,9 @@ gulp.task('geojson', function(){
   .pipe(gulp.dest("./public/geojson/"));
 });
 
+gulp.task('clean', function(fn) {
+  rimraf('./build', fn);
+});
 
 /*
 gulp tasks
