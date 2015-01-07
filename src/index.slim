@@ -1,0 +1,99 @@
+doctype html
+html lang="ja"
+  head
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    link href="stylesheets/bootstrap.min.css" rel="stylesheet" /
+    link href="stylesheets/sticky-footer.css" rel="stylesheet" /
+    link href="stylesheets/style.css" rel="stylesheet" /
+    script charset="utf-8" src="javascripts/vendor/jquery-1.10.2.min.js" type="text/javascript"
+    script charset="utf-8" src="javascripts/vendor/bootstrap.min.js" type="text/javascript"
+    script charset="utf-8" src="javascripts/vendor/underscore-min.js" type="text/javascript"
+    script charset="utf-8" src="javascripts/vendor/backbone-min.js" type="text/javascript"
+    script charset="utf-8" src="javascripts/vendor/d3.v3.min.js" type="text/javascript"
+    script charset="utf-8" src="javascripts/vendor/topojson.v1.min.js" type="text/javascript"
+    script charset="utf-8" src="javascripts/vendor/moment-with-langs.min.js" type="text/javascript"
+    script charset="utf-8" src="javascripts/Observatory.js" type="text/javascript"
+    script#mapview charset="utf-8" src="javascripts/TimeView.js" type="text/javascript"
+    script#mapview charset="utf-8" src="javascripts/DetailView.js" type="text/javascript"
+    script#mapview charset="utf-8" src="javascripts/MapView2.js" type="text/javascript"
+    script charset="utf-8" src="javascripts/app.js" type="text/javascript"
+    title Japan Radiation Monitor
+  body
+    .wrap
+      .container
+        .page-header
+          h1 Japan Radiation Monitor
+          p#show-discription.read style=("height:22px; display: table;")
+            svg.arrow height="22px" style=("display: table-cell;") width="22px"
+              polygon fill="black" points="6, 6 6, 16 16, 11" viewbox=("0 0 16 16") /
+            span style=(" display: table-cell; vertical-align: middle")
+              | このサイトは何ですか
+          p#discription
+            | 全国の放射線量を可視化します。
+            a href="http://dokusyodebokin.rulez.jp/earthquake/readme" target="_blank" > こちら
+            | のAPIを使用させていただきました。
+            br/
+            | データソース：
+            a href="http://www.bousai.ne.jp/tex/index.php" target="_blank"  文部科学省原子力安全課原子力環境防災ネットワーク
+        #console
+          .time
+          .btn-group
+            button#all-japan-btn.btn.btn-default type="button"  日本全域
+            button#fukushima-btn.btn.btn-default style=("color: #ccc;") type="button"  福島県
+            /! <button type="button" class="btn btn-default">Right</button>
+          .dropdown
+            a.dropdown-toggle.btn.btn-primary data-toggle="dropdown" href="#"  Data Type
+            ul.dropdown-menu
+              li
+                a#change-data-doserate href="#" tabindex="-1"  Doserate
+              li
+                a#change-data-wind href="#" tabindex="-1"  Wind
+              li
+                a#change-data-rain href="#" tabindex="-1"  Rain
+          .detail
+            table#detail-data.table.table-striped
+              tbody
+                tr
+                  td doserate:
+                  td.doserate
+                  td
+                    | [nGy/h]
+                tr
+                  td prefecture:
+                  td.prefecture
+                  td 県
+                tr
+                  td place:
+                  td.place
+                  td 観測場所
+                tr
+                  td direction:
+                  td.direction
+                  td 風向き
+                tr
+                  td wind:
+                  td.wind
+                  td 風速[m/s]
+                tr
+                  td rain:
+                  td.rain
+                  td 降水量[mm]
+                tr
+                  td datatime:
+                  td.datatime
+                  td データの取得時間
+                tr
+                  td createtime:
+                  td.createtime
+                  td データの生成時間
+                tr
+                  td datasource:
+                  td.datasource
+                  td 観測局名
+        #japan
+    #footer
+      .container
+        p.text-muted.credit
+          | Copyright (C) 2013 Koichiro Mori
+          a href="http://moxus.org"  moxus.org
