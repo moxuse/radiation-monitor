@@ -1,0 +1,47 @@
+.container{
+  max-width: 1000px;
+}
+
+.axis path, .axis line{
+  fill: none;
+  stroke: black;
+}
+.axis text {
+  font-size: 11px;
+}
+
+.pref-label {
+  fill: #fff;
+  fill-opacity: .5;
+  color: #666;
+  font-size: 8px;
+  text-anchor: middle;
+}
+
+#discription {
+  height: 0px;
+  overflow: hidden;
+  margin: 0px;
+  -webkit-transition-duration: 1s; 
+  -webkit-transition-timing-function: out;  
+}
+
+#console {
+  position: absolute;
+}
+
+.btn-group {
+  margin-bottom: 20px;
+}
+
+.dropdown {
+  margin-bottom: 20px;
+}
+
+.table {
+  font-size: 0.8em;
+}
+
+#japan {
+  margin-top: 110px;
+}
