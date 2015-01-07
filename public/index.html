@@ -1,102 +1,155 @@
-<!DOCTUPE html>
+<!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheets/sticky-footer.css" rel="stylesheet">
-    <link href="stylesheets/style.css" rel="stylesheet">
-    <script src="javascripts/vendor/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/vendor/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/vendor/underscore-min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/vendor/backbone-min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/vendor/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/vendor/topojson.v1.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/vendor/moment-with-langs.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/Observatory.js" type="text/javascript" charset="utf-8"></script>
-    <script id="mapview" src="javascripts/TimeView.js" type="text/javascript" charset="utf-8"></script>
-    <script id="mapview" src="javascripts/DetailView.js" type="text/javascript" charset="utf-8"></script>
-    <script id="mapview" src="javascripts/MapView2.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/app.js" type="text/javascript" charset="utf-8"></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link href="stylesheets/sticky-footer.css" rel="stylesheet" />
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <script charset="utf-8" src="javascripts/vendor/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script charset="utf-8" src="javascripts/vendor/bootstrap.min.js" type="text/javascript"></script>
+    <script charset="utf-8" src="javascripts/vendor/underscore-min.js" type="text/javascript"></script>
+    <script charset="utf-8" src="javascripts/vendor/backbone-min.js" type="text/javascript"></script>
+    <script charset="utf-8" src="javascripts/vendor/d3.v3.min.js" type="text/javascript"></script>
+    <script charset="utf-8" src="javascripts/vendor/topojson.v1.min.js" type="text/javascript"></script>
+    <script charset="utf-8" src="javascripts/vendor/moment-with-langs.min.js" type="text/javascript"></script>
+    <script charset="utf-8" src="javascripts/Observatory.js" type="text/javascript"></script>
+    <script charset="utf-8" id="mapview" src="javascripts/TimeView.js" type="text/javascript"></script>
+    <script charset="utf-8" id="mapview" src="javascripts/DetailView.js" type="text/javascript"></script>
+    <script charset="utf-8" id="mapview" src="javascripts/MapView2.js" type="text/javascript"></script>
+    <script charset="utf-8" src="javascripts/app.js" type="text/javascript"></script>
     <title>Japan Radiation Monitor</title>
   </head>
-
   <body>
     <div class="wrap">
       <div class="container">
         <div class="page-header">
-          <h1>Japan Radiation Monitor</h1>
-          <p id="show-discription" class="read" style="height:22px; display: table;">
-            <svg class="arrow" width="22px" height="22px" style="display: table-cell;">
-              <polygon points="6, 6 6, 16 16, 11" viewBox="0 0 16 16" fill="black" />
-            </svg>
-            <span style=" display: table-cell; vertical-align: middle">
-              このサイトは何ですか
-            </span>
+          <h1>
+            Japan Radiation Monitor
+          </h1>
+          <p class="read" id="show-discription" style="height:22px; display: table;">
+            <svg class="arrow" height="22px" style="display: table-cell;" width="22px"><polygon fill="black" points="6, 6 6, 16 16, 11" viewbox="0 0 16 16" /></svg><span style=" display: table-cell; vertical-align: middle">このサイトは何ですか</span>
           </p>
           <p id="discription">
-            全国の放射線量を可視化します。<a href="http://dokusyodebokin.rulez.jp/earthquake/readme" target="_blank">こちら</a>のAPIを使用させていただきました。<br>
-            データソース：<a href="http://www.bousai.ne.jp/tex/index.php" target="_blank">文部科学省原子力安全課原子力環境防災ネットワーク</a>
+            全国の放射線量を可視化します。<a href="http://dokusyodebokin.rulez.jp/earthquake/readme" target="_blank">> こちら</a>のAPIを使用させていただきました。<br />データソース：<a href="http://www.bousai.ne.jp/tex/index.php" target="_blank"> 文部科学省原子力安全課原子力環境防災ネットワーク</a>
           </p>
         </div>
         <div id="console">
           <div class="time"></div>
           <div class="btn-group">
-            <button id="all-japan-btn" type="button" class="btn btn-default">日本全域</button>
-            <button id="fukushima-btn" type="button" class="btn btn-default" style="color: #ccc;">福島県</button>
-            <!-- <button type="button" class="btn btn-default">Right</button> -->
-          </div> 
+            <button class="btn btn-default" id="all-japan-btn" type="button"> 日本全域</button><button class="btn btn-default" id="fukushima-btn" style="color: #ccc;" type="button"> 福島県</button><!--<button type="button" class="btn btn-default">Right</button>-->
+          </div>
           <div class="dropdown">
-            <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#">Data Type</a>
+            <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#"> Data Type</a>
             <ul class="dropdown-menu">
-              <li><a id="change-data-doserate" tabindex="-1" href="#">Doserate</a></li>
-              <li><a id="change-data-wind" tabindex="-1" href="#">Wind</a></li>
-              <li><a id="change-data-rain" tabindex="-1" href="#">Rain</a></li>
+              <li>
+                <a href="#" id="change-data-doserate" tabindex="-1"> Doserate</a>
+              </li>
+              <li>
+                <a href="#" id="change-data-wind" tabindex="-1"> Wind</a>
+              </li>
+              <li>
+                <a href="#" id="change-data-rain" tabindex="-1"> Rain</a>
+              </li>
             </ul>
           </div>
           <div class="detail">
             <table class="table table-striped" id="detail-data">
               <tbody>
                 <tr>
-                  <td>doserate:</td><td class="doserate"></td> <td>(nGy/h)</td>
+                  <td>
+                    doserate:
+                  </td>
+                  <td class="doserate"></td>
+                  <td>
+                    [nGy/h]
+                  </td>
                 </tr>
                 <tr>
-                  <td>prefecture:</td><td class="prefecture"></td><td>県</td>
+                  <td>
+                    prefecture:
+                  </td>
+                  <td class="prefecture"></td>
+                  <td>
+                    県
+                  </td>
                 </tr>
                 <tr>
-                  <td>place:</td><td class="place"></td><td>観測場所</td>
+                  <td>
+                    place:
+                  </td>
+                  <td class="place"></td>
+                  <td>
+                    観測場所
+                  </td>
                 </tr>
                 <tr>
-                  <td>direction:</td><td class="direction"></td><td>風向き</td>
+                  <td>
+                    direction:
+                  </td>
+                  <td class="direction"></td>
+                  <td>
+                    風向き
+                  </td>
                 </tr>
                 <tr>
-                  <td>wind: </td><td class="wind"></td> <td>風速[m/s]</td>
+                  <td>
+                    wind:
+                  </td>
+                  <td class="wind"></td>
+                  <td>
+                    風速[m/s]
+                  </td>
                 </tr>
                 <tr>
-                  <td>rain: </td><td class="rain"></td> <td>降水量[mm]</td>
+                  <td>
+                    rain:
+                  </td>
+                  <td class="rain"></td>
+                  <td>
+                    降水量[mm]
+                  </td>
                 </tr>
                 <tr>
-                  <td>datatime: </td><td class="datatime"></td> <td>データの取得時間</td>
+                  <td>
+                    datatime:
+                  </td>
+                  <td class="datatime"></td>
+                  <td>
+                    データの取得時間
+                  </td>
                 </tr>
                 <tr>
-                  <td>createtime: </td><td class="createtime"></td> <td>データの生成時間</td>
+                  <td>
+                    createtime:
+                  </td>
+                  <td class="createtime"></td>
+                  <td>
+                    データの生成時間
+                  </td>
                 </tr>
                 <tr>
-                  <td>datasource: </td><td class="datasource"></td> <td>観測局名</td>
+                  <td>
+                    datasource:
+                  </td>
+                  <td class="datasource"></td>
+                  <td>
+                    観測局名
+                  </td>
                 </tr>
-                </tbody>
+              </tbody>
             </table>
           </div>
         </div>
         <div id="japan"></div>
       </div>
     </div>
-    
     <div id="footer">
       <div class="container">
-        <p class="text-muted credit">Copyright (C) 2013 Koichiro Mori <a href="http://moxus.org">moxus.org</a></p>
+        <p class="text-muted credit">
+          Copyright (C) 2013 Koichiro Mori<a href="http://moxus.org"> moxus.org</a>
+        </p>
       </div>
     </div>
   </body>
 </html>
-

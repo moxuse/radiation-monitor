@@ -22,8 +22,8 @@
   height: 0px;
   overflow: hidden;
   margin: 0px;
-  -webkit-transition-duration: 1s; 
-  -webkit-transition-timing-function: out;  
+  -webkit-transition-duration: 1s;
+  -webkit-transition-timing-function: out;
 }
 
 #console {
